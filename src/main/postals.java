@@ -16,6 +16,7 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
@@ -31,13 +32,18 @@ public class postals extends javax.swing.JFrame {
      */
     Graphics2D map;
     String path = "C:\\Users\\edubi\\OneDrive\\Pictures\\Fondos\\sandman.jpg";
+    BufferedImage heartBF = null;
+    BufferedImage startBF = null;
+    BufferedImage likeBF = null;
     int iconSelect = 1;
 
     public postals() {
         try {
             initComponents();
             this.
-            showPostals();
+                    showPostals();
+            getIcons();
+
         } catch (IOException ex) {
             Logger.getLogger(postals.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -54,6 +60,7 @@ public class postals extends javax.swing.JFrame {
     private void initComponents() {
 
         jCheckBoxMenuItem1 = new javax.swing.JCheckBoxMenuItem();
+        jSeparator1 = new javax.swing.JSeparator();
         lbImage2 = new javax.swing.JLabel();
         lbImage1 = new javax.swing.JLabel();
         btnMenu = new javax.swing.JButton();
@@ -226,6 +233,7 @@ public class postals extends javax.swing.JFrame {
     private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel lbImage1;
     private javax.swing.JLabel lbImage2;
     // End of variables declaration//GEN-END:variables
@@ -245,7 +253,7 @@ public class postals extends javax.swing.JFrame {
             @Override
             public void mouseClicked(MouseEvent e) {
                 if (iconSelect == 1) {
-                    addIcon("src\\imagenes\\like.png", e);
+                      lbImage2.getGraphics().drawImage(likeBF, e.getX(), e.getY(), null);
                 }
             }
         });
@@ -257,7 +265,8 @@ public class postals extends javax.swing.JFrame {
             @Override
             public void mouseClicked(MouseEvent e) {
                 if (iconSelect == 2) {
-                    addIcon("src\\imagenes\\heart.png", e);
+                     lbImage2.getGraphics().drawImage(heartBF, e.getX(), e.getY(), null);
+                    //addIcon("src\\imagenes\\heart.png", e);
                 }
             }
         });
@@ -269,7 +278,7 @@ public class postals extends javax.swing.JFrame {
             @Override
             public void mouseClicked(MouseEvent e) {
                 if (iconSelect == 3) {
-                    addIcon("src\\imagenes\\star.png", e);
+                     lbImage2.getGraphics().drawImage(startBF, e.getX(), e.getY(), null);
                 }
             }
         });
@@ -289,4 +298,41 @@ public class postals extends javax.swing.JFrame {
             System.out.println("The url is invalid");
         }
     }
+
+    private void getIcons() {
+        Icon heart = btnHeart.getIcon();
+        ImageIcon imageicon = (ImageIcon) heart;
+        Image image = imageicon.getImage();
+        heartBF = toBufferedImage(image);
+
+        
+        Icon star = btnStar.getIcon();
+        ImageIcon starIC = (ImageIcon) star;
+        Image starI = starIC.getImage();
+        startBF = toBufferedImage(starI);
+
+        
+        Icon like = btnLike.getIcon();
+        ImageIcon icLike = (ImageIcon) like;
+        Image likeImage = icLike.getImage();
+        likeBF = toBufferedImage(likeImage);
+ 
+    }
+
+    public BufferedImage toBufferedImage(Image img) {
+        if (img instanceof BufferedImage) {
+            return (BufferedImage) img;
+        }
+
+        // Create a buffered image with transparency
+        BufferedImage bimage = new BufferedImage(img.getWidth(null), img.getHeight(null), BufferedImage.TYPE_INT_ARGB);
+
+        // Draw the image on to the buffered image
+        Graphics2D bGr = bimage.createGraphics();
+        bGr.drawImage(img, 0, 0, null);
+        bGr.dispose();
+        // Return the buffered image
+        return bimage;
+    }
+
 }
