@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package main;
+
 
 
 import java.awt.Graphics2D;
@@ -25,28 +25,22 @@ import javax.swing.border.LineBorder;
  *
  * @author edubi
  */
-public class postals extends javax.swing.JFrame {
+public class DibujarIconos extends javax.swing.JFrame implements Plugin{
 
     /**
-     * Creates new form postals
+     * Creates new form DibujarIconos
      */
     Graphics2D map;
-    String path = "C:\\Users\\edubi\\OneDrive\\Pictures\\Fondos\\sandman.jpg";
+    String path ;
     BufferedImage heartBF = null;
     BufferedImage startBF = null;
     BufferedImage likeBF = null;
     int iconSelect = 1;
 
-    public postals() {
-        try {
-            initComponents();
-            this.
-                    showPostals();
-            getIcons();
+    public DibujarIconos() {
 
-        } catch (IOException ex) {
-            Logger.getLogger(postals.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        initComponents();
+     
 
     }
 
@@ -81,7 +75,7 @@ public class postals extends javax.swing.JFrame {
         lbImage1.setForeground(new java.awt.Color(204, 204, 204));
         lbImage1.setBorder(new javax.swing.border.MatteBorder(null));
 
-        btnMenu.setText("Menu");
+        btnMenu.setText("Volver");
         btnMenu.setToolTipText("");
         btnMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -95,21 +89,21 @@ public class postals extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel2.setText("Plugin aplicado");
 
-        btnLike.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/like.png"))); // NOI18N
+        btnLike.setIcon(new javax.swing.ImageIcon(getClass().getResource("/like.png"))); // NOI18N
         btnLike.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLikeActionPerformed(evt);
             }
         });
 
-        btnHeart.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/heart.png"))); // NOI18N
+        btnHeart.setIcon(new javax.swing.ImageIcon(getClass().getResource("/heart.png"))); // NOI18N
         btnHeart.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnHeartActionPerformed(evt);
             }
         });
 
-        btnStar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/star.png"))); // NOI18N
+        btnStar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/star.png"))); // NOI18N
         btnStar.setToolTipText("");
         btnStar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -165,7 +159,7 @@ public class postals extends javax.swing.JFrame {
                     .addComponent(btnLike)
                     .addComponent(btnHeart)
                     .addComponent(btnStar))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 108, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 84, Short.MAX_VALUE)
                 .addComponent(btnMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -175,6 +169,7 @@ public class postals extends javax.swing.JFrame {
 
     private void btnMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuActionPerformed
 
+        this.dispose();
     }//GEN-LAST:event_btnMenuActionPerformed
 
     private void btnLikeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLikeActionPerformed
@@ -206,21 +201,23 @@ public class postals extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(postals.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DibujarIconos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(postals.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DibujarIconos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(postals.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DibujarIconos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(postals.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DibujarIconos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new postals().setVisible(true);
+              
             }
         });
     }
@@ -249,7 +246,7 @@ public class postals extends javax.swing.JFrame {
 
     private void like() {
         iconSelect = 1;
-        lbImage1.addMouseListener(new MouseAdapter() {
+        lbImage2.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 if (iconSelect == 1) {
@@ -261,7 +258,7 @@ public class postals extends javax.swing.JFrame {
 
     private void love() {
         iconSelect = 2;
-        lbImage1.addMouseListener(new MouseAdapter() {
+        lbImage2.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 if (iconSelect == 2) {
@@ -274,7 +271,7 @@ public class postals extends javax.swing.JFrame {
 
     private void star() {
         iconSelect = 3;
-        lbImage1.addMouseListener(new MouseAdapter() {
+        lbImage2.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 if (iconSelect == 3) {
@@ -333,6 +330,20 @@ public class postals extends javax.swing.JFrame {
         bGr.dispose();
         // Return the buffered image
         return bimage;
+    }
+
+    @Override
+    public void loadFile(String path) {
+         
+        try {
+            this.setLocationRelativeTo(null);
+            this.setVisible(true);
+            this.path = path;
+            this.showPostals();
+            this.getIcons();
+        } catch (IOException ex) {
+            Logger.getLogger(DibujarIconos.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
 }
